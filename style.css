@@ -1,23 +1,5 @@
-<header>
-  <nav class="navbar">
-    <h1 class="logo">Projets Classe</h1>
-    <ul class="nav-links">
-      <li><a href="#">Accueil</a></li>
-      <li><a href="#">À propos</a></li>
-      <li><a href="#">Projets</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
-  background: linear-gradient(to right, #f4f6f9, #e8ecf3);
+  background: linear-gradient(to right, #f4f6f9,#e8ecf3);
   color: #333;
 }
 
