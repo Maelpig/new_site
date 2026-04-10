@@ -2,7 +2,7 @@ body {
   margin: 0;
    font-family: Arial, sans-serif;
     background-color: #111;
-    color: rgb(201, 201, 201);
+    color: rgb(0, 0, 0);
 
   background-color: hsl(224, 97%, 76%);
 }
@@ -10,7 +10,7 @@ body {
 
 
 header {
-  background-color: #b8c3cf;
+  background-color: #141414;
   padding: 10px 0;
 }
 
