@@ -9,7 +9,6 @@
   <style>
     :root {
       --bg:        #7b8fd4;
-      --bg-light:  #a0aede;
       --nav-bg:    #1e1e2e;
       --card-bg:   #ffffff;
       --accent:    #3e8e8e;
@@ -22,12 +21,8 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
     nav {
       background: var(--nav-bg);
       padding: 0 2.5rem;
@@ -40,79 +35,22 @@
       z-index: 100;
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
     }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: #e0e6ff;
-      letter-spacing: 0.04em;
-    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: #e0e6ff; letter-spacing: 0.04em; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: #c0c8f0;
-      text-decoration: none;
-      font-size: 0.92rem;
-      font-weight: 500;
-      transition: color var(--transition);
-    }
+    .nav-links a { color: #c0c8f0; text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color var(--transition); }
     .nav-links a:hover { color: #fff; }
-    .section-apropos {
-      max-width: 960px;
-      margin: 3.5rem auto 0;
-      padding: 0 2rem;
-    }
-    .section-apropos h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-      position: relative;
-      display: inline-block;
-    }
-    .section-apropos h1::after {
-      content: '';
-      display: block;
-      height: 3px;
-      width: 100%;
-      background: #fff;
-      margin-top: 6px;
-      border-radius: 2px;
-      opacity: 0.6;
-    }
-    .section-apropos p {
-      color: #e8ecff;
-      font-size: 1.03rem;
-      margin-top: 1.1rem;
-      line-height: 1.7;
-      max-width: 780px;
-    }
-    .section-projets {
-      max-width: 1200px;
-      margin: 3rem auto 5rem;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-    .section-projets h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.2;
-      padding-top: 0.4rem;
-      position: sticky;
-      top: 80px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.4rem;
-    }
+
+    .section-apropos { max-width: 960px; margin: 3.5rem auto 0; padding: 0 2rem; }
+    .section-apropos h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; display: inline-block; }
+    .section-apropos h1::after { content: ''; display: block; height: 3px; width: 100%; background: #fff; margin-top: 6px; border-radius: 2px; opacity: 0.6; }
+    .section-apropos p { color: #e8ecff; font-size: 1.03rem; margin-top: 1.1rem; line-height: 1.7; max-width: 780px; }
+
+    .section-projets { max-width: 1200px; margin: 3rem auto 5rem; padding: 0 2rem; display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: start; }
+    .section-projets h2 { font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; color: #fff; line-height: 1.2; padding-top: 0.4rem; position: sticky; top: 80px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -123,85 +61,65 @@
       transition: transform var(--transition), box-shadow var(--transition);
       animation: fadeUp 0.5s both;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 36px rgba(30,30,60,0.2);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card:nth-child(1) { animation-delay: .05s }
-    .card:nth-child(2) { animation-delay: .10s }
-    .card:nth-child(3) { animation-delay: .15s }
-    .card:nth-child(4) { animation-delay: .20s }
-    .card:nth-child(5) { animation-delay: .25s }
-    .card:nth-child(6) { animation-delay: .30s }
-    .card:nth-child(7) { animation-delay: .35s }
-    .card:nth-child(8) { animation-delay: .40s }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(30,30,60,0.2); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .card:nth-child(1) { animation-delay: .05s } .card:nth-child(2) { animation-delay: .10s }
+    .card:nth-child(3) { animation-delay: .15s } .card:nth-child(4) { animation-delay: .20s }
+    .card:nth-child(5) { animation-delay: .25s } .card:nth-child(6) { animation-delay: .30s }
+    .card:nth-child(7) { animation-delay: .35s } .card:nth-child(8) { animation-delay: .40s }
     .card:nth-child(9) { animation-delay: .45s }
-    .card-img {
+
+    /* Zone image / placeholder */
+    .card-media {
       width: 100%;
       height: 155px;
-      object-fit: cover;
-      display: block;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
     }
     .card-img-placeholder {
-      width: 100%;
-      height: 155px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
       font-size: 3rem;
       background: linear-gradient(135deg, #c5cef5 0%, #a0aede 100%);
-      user-select: none;
+      transition: opacity 0.4s ease;
+      position: absolute; top: 0; left: 0;
     }
-    .card-body {
-      padding: 1.2rem 1.3rem 1.4rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    .card-img-reveal {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; top: 0; left: 0;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 0.45s ease, transform 0.45s ease;
     }
-    .card-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-    }
-    .card-desc {
-      font-size: 0.87rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-      flex: 1;
-    }
+    /* État : image révélée */
+    .card.revealed .card-img-placeholder { opacity: 0; pointer-events: none; }
+    .card.revealed .card-img-reveal { opacity: 1; transform: scale(1); }
+    /* Le bouton change en "Masquer" */
+    .card.revealed .btn-projet { background: #888; box-shadow: none; }
+    .card.revealed .btn-projet:hover { background: #666; }
+
+    .card-body { padding: 1.2rem 1.3rem 1.4rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+    .card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .card-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
     .card-author { font-size: 0.84rem; color: var(--text); margin-top: 0.2rem; }
     .card-author strong { font-weight: 600; }
+
     .btn-projet {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.9rem;
-      padding: 0.52rem 1.15rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.87rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.9rem; padding: 0.52rem 1.15rem;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.87rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
       transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
       width: fit-content;
       box-shadow: 0 3px 10px rgba(62,142,142,0.35);
     }
-    .btn-projet:hover {
-      background: var(--accent-h);
-      transform: scale(1.04);
-      box-shadow: 0 6px 18px rgba(62,142,142,0.45);
-    }
+    .btn-projet:hover { background: var(--accent-h); transform: scale(1.04); box-shadow: 0 6px 18px rgba(62,142,142,0.45); }
     .btn-projet svg { width: 15px; height: 15px; flex-shrink: 0; }
+
     @media (max-width: 900px) {
       .section-projets { grid-template-columns: 1fr; }
       .section-projets h2 { position: static; }
@@ -212,13 +130,8 @@
       nav { padding: 0 1.2rem; }
       .nav-links { gap: 1.2rem; }
     }
-    footer {
-      background: var(--nav-bg);
-      text-align: center;
-      padding: 1.3rem;
-      color: #888aab;
-      font-size: 0.83rem;
-    }
+
+    footer { background: var(--nav-bg); text-align: center; padding: 1.3rem; color: #888aab; font-size: 0.83rem; }
   </style>
 </head>
 <body>
@@ -241,128 +154,162 @@
     <div class="grid">
 
       <article class="card">
-        <div class="card-img-placeholder">🎮</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🎮</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Typical_Tetris_Game.svg/400px-Typical_Tetris_Game.svg.png" alt="Tetris">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 1 – Tetris</div>
           <p class="card-desc">Un jeu de tetris réalisé en Python sur une carte micro:bit</p>
           <p class="card-author"><strong>Auteur :</strong> Teva, gougoul</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">🧭</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🧭</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Compass_rose_simple_plain.svg/400px-Compass_rose_simple_plain.svg.png" alt="Boussole">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 2 – Boussole</div>
           <p class="card-desc">Un projet de boussole électronique sur une carte micro bit bbc</p>
           <p class="card-author"><strong>Auteur :</strong> Iain, hugo</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">🚗</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🚗</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/BBC_Micro_Bit_gaming.jpg/400px-BBC_Micro_Bit_gaming.jpg" alt="Voiture téléguidée">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 3 – Piloter un moteur</div>
           <p class="card-desc">Piloter un moteur avec une carte bbc dans l'optique de piloter une voiture téléguidée</p>
           <p class="card-author"><strong>Auteur :</strong> timeo, samuel</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">🔊</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🔊</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sylvania_Speaker.jpg/400px-Sylvania_Speaker.jpg" alt="Amplificateur">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 4 – Amplificateur de son</div>
           <p class="card-desc">Amplificateur sonore</p>
           <p class="card-author"><strong>Auteur :</strong> tino, lancelot</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">🤖</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🤖</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Lego_Color_Bricks.jpg/400px-Lego_Color_Bricks.jpg" alt="Voiture infrarouge Lego">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 5 – Voiture à infrarouge</div>
           <p class="card-desc">Voiture pilotée grâce à un laser infrarouge en Lego</p>
           <p class="card-author"><strong>Auteur :</strong> alex, yanis</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">🎵</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🎵</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Musical_notes.svg/400px-Musical_notes.svg.png" alt="Blind test">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 6 – Blind test (QCM)</div>
           <p class="card-desc">Petit jeux amusant et stimulant sur carte BBC</p>
           <p class="card-author"><strong>Auteur :</strong> BEKÔ 2.0</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">💡</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">💡</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Microbit_v2.jpg/400px-Microbit_v2.jpg" alt="Projet 7">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 7 – Titre du projet</div>
           <p class="card-desc">Description courte du projet.</p>
           <p class="card-author"><strong>Élèves :</strong> Prénom 5</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">⚙️</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">⚙️</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Microbit_v2.jpg/400px-Microbit_v2.jpg" alt="Projet 8">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 8 – Titre du projet</div>
           <p class="card-desc">Description courte du projet.</p>
           <p class="card-author"><strong>Élèves :</strong> Prénom 5</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-img-placeholder">🔬</div>
+        <div class="card-media">
+          <div class="card-img-placeholder">🔬</div>
+          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Microbit_v2.jpg/400px-Microbit_v2.jpg" alt="Projet 9">
+        </div>
         <div class="card-body">
           <div class="card-title">Projet 9 – Titre du projet</div>
           <p class="card-desc">Description courte du projet.</p>
           <p class="card-author"><strong>Élèves :</strong> Prénom 5</p>
-          <a href="#" class="btn-projet">
+          <button class="btn-projet" onclick="toggleCard(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             Voir le projet
-          </a>
+          </button>
         </div>
       </article>
 
     </div>
   </section>
 
-  <footer>
-    © 2025–2026 · Classe 2SI-CIT · Tous droits réservés
-  </footer>
+  <footer>© 2025–2026 · Classe 2SI-CIT · Tous droits réservés</footer>
+
+  <script>
+    function toggleCard(btn) {
+      const card = btn.closest('.card');
+      const revealed = card.classList.toggle('revealed');
+      const icon = btn.querySelector('svg');
+      btn.childNodes[btn.childNodes.length - 1].textContent = revealed ? ' Masquer' : ' Voir le projet';
+    }
+  </script>
 
 </body>
 </html>
