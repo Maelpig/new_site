@@ -5,139 +5,363 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projets SI – Classe 2SI-CIT 2025-2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:        #7b8fd4;
-      --nav-bg:    #1e1e2e;
-      --card-bg:   #ffffff;
-      --accent:    #3e8e8e;
-      --accent-h:  #2d6f6f;
-      --text:      #1a1a2e;
-      --text-muted:#555577;
-      --radius:    14px;
-      --shadow:    0 6px 24px rgba(30,30,60,0.13);
-      --transition:0.22s cubic-bezier(.4,0,.2,1);
+      --bg: #0b0f1a;
+      --bg2: #111827;
+      --nav-bg: rgba(8, 10, 18, 0.92);
+      --card-bg: #141929;
+      --card-border: rgba(99, 120, 255, 0.15);
+      --accent: #6366f1;
+      --accent2: #22d3ee;
+      --accent3: #f472b6;
+      --text: #e8ecff;
+      --text-muted: #8892b0;
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(0,0,0,.45);
+      --transition: 0.25s cubic-bezier(.4,0,.2,1);
+      --glow: 0 0 24px rgba(99,102,241,0.25);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(99,102,241,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 100%, rgba(34,211,238,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(244,114,182,0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
     nav {
       background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       padding: 0 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 58px;
+      height: 62px;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(99,102,241,0.12);
     }
-    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: #e0e6ff; letter-spacing: 0.04em; }
-    .nav-logo span { color: var(--accent); }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .nav-logo::before { content: '◈'; color: var(--accent); font-size: 1.1rem; }
+    .nav-logo span { color: var(--accent2); }
+
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: #c0c8f0; text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color var(--transition); }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      transition: color var(--transition);
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width var(--transition);
+    }
     .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
 
-    .section-apropos { max-width: 960px; margin: 3.5rem auto 0; padding: 0 2rem; }
-    .section-apropos h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: #fff; display: inline-block; }
-    .section-apropos h1::after { content: ''; display: block; height: 3px; width: 100%; background: #fff; margin-top: 6px; border-radius: 2px; opacity: 0.6; }
-    .section-apropos p { color: #e8ecff; font-size: 1.03rem; margin-top: 1.1rem; line-height: 1.7; max-width: 780px; }
+    .section-apropos {
+      max-width: 960px;
+      margin: 5rem auto 0;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
 
-    .section-projets { max-width: 1200px; margin: 3rem auto 5rem; padding: 0 2rem; display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: start; }
-    .section-projets h2 { font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; color: #fff; line-height: 1.2; padding-top: 0.4rem; position: sticky; top: 80px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 50px;
+      padding: .3rem .85rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #a5b4fc;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .badge::before { content: '✦'; font-size: .7rem; }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .section-apropos h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .section-apropos h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-apropos p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    .section-projets {
+      max-width: 1200px;
+      margin: 4rem auto 6rem;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .section-header .count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      color: var(--accent);
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 50px;
+      padding: .2rem .7rem;
+      letter-spacing: .04em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
 
     .card {
       background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: transform var(--transition), box-shadow var(--transition);
-      animation: fadeUp 0.5s both;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      animation: fadeUp .55s both;
+      position: relative;
     }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(30,30,60,0.2); }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .card:nth-child(1) { animation-delay: .05s } .card:nth-child(2) { animation-delay: .10s }
-    .card:nth-child(3) { animation-delay: .15s } .card:nth-child(4) { animation-delay: .20s }
-    .card:nth-child(5) { animation-delay: .25s } .card:nth-child(6) { animation-delay: .30s }
-    .card:nth-child(7) { animation-delay: .35s } .card:nth-child(8) { animation-delay: .40s }
-    .card:nth-child(9) { animation-delay: .45s }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(99,102,241,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.6), var(--glow);
+      border-color: rgba(99,102,241,0.35);
+    }
 
-    /* Zone image / placeholder */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card:nth-child(1){animation-delay:.05s} .card:nth-child(2){animation-delay:.10s} .card:nth-child(3){animation-delay:.15s}
+    .card:nth-child(4){animation-delay:.20s} .card:nth-child(5){animation-delay:.25s} .card:nth-child(6){animation-delay:.30s}
+    .card:nth-child(7){animation-delay:.35s} .card:nth-child(8){animation-delay:.40s} .card:nth-child(9){animation-delay:.45s}
+
     .card-media {
       width: 100%;
-      height: 155px;
+      height: 160px;
       position: relative;
       overflow: hidden;
       flex-shrink: 0;
     }
+
     .card-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3rem;
-      background: linear-gradient(135deg, #c5cef5 0%, #a0aede 100%);
-      transition: opacity 0.4s ease;
-      position: absolute; top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      background: linear-gradient(135deg, #1a2040 0%, #0f1628 100%);
+      transition: opacity .4s ease;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 2;
     }
+
     .card-img-reveal {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      position: absolute; top: 0; left: 0;
+      position: absolute;
+      top: 0; left: 0;
       opacity: 0;
       transform: scale(1.06);
-      transition: opacity 0.45s ease, transform 0.45s ease;
+      transition: opacity .45s ease, transform .45s ease;
+      z-index: 1;
     }
-    /* État : image révélée */
     .card.revealed .card-img-placeholder { opacity: 0; pointer-events: none; }
     .card.revealed .card-img-reveal { opacity: 1; transform: scale(1); }
-    /* Le bouton change en "Masquer" */
-    .card.revealed .btn-projet { background: #888; box-shadow: none; }
-    .card.revealed .btn-projet:hover { background: #666; }
+    .card.revealed .btn-projet {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--text-muted);
+    }
+    .card.revealed .btn-projet:hover { background: rgba(255,255,255,0.1); }
 
-    .card-body { padding: 1.2rem 1.3rem 1.4rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-    .card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
-    .card-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
-    .card-author { font-size: 0.84rem; color: var(--text); margin-top: 0.2rem; }
-    .card-author strong { font-weight: 600; }
+    .card-body {
+      padding: 1.3rem 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      color: var(--accent);
+      letter-spacing: .08em;
+      opacity: .7;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-author {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: .3rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .card-author::before { content: '👤'; font-size: .75rem; }
+    .card-author strong { font-weight: 600; color: #c5cef5; }
 
     .btn-projet {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-top: 0.9rem; padding: 0.52rem 1.15rem;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 50px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.87rem; font-weight: 600;
-      cursor: pointer; text-decoration: none;
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1rem;
+      padding: .55rem 1.2rem;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc;
+      border-radius: 50px;
+      font-family: 'Outfit', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       width: fit-content;
-      box-shadow: 0 3px 10px rgba(62,142,142,0.35);
+      letter-spacing: .02em;
     }
-    .btn-projet:hover { background: var(--accent-h); transform: scale(1.04); box-shadow: 0 6px 18px rgba(62,142,142,0.45); }
-    .btn-projet svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btn-projet:hover {
+      background: rgba(99,102,241,0.3);
+      border-color: rgba(99,102,241,0.5);
+      transform: scale(1.04);
+      box-shadow: 0 4px 18px rgba(99,102,241,0.2);
+      color: #fff;
+    }
+    .btn-projet svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    @media (max-width: 900px) {
-      .section-projets { grid-template-columns: 1fr; }
-      .section-projets h2 { position: static; }
-      .grid { grid-template-columns: repeat(2, 1fr); }
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin: 1.5rem 0 2rem;
+      opacity: .6;
     }
-    @media (max-width: 560px) {
+
+    footer {
+      background: rgba(8,10,18,0.9);
+      border-top: 1px solid rgba(99,102,241,0.1);
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: .82rem;
+      letter-spacing: .04em;
+      position: relative;
+      z-index: 1;
+    }
+    footer span { color: var(--accent); }
+
+    @media(max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 560px) {
       .grid { grid-template-columns: 1fr; }
       nav { padding: 0 1.2rem; }
       .nav-links { gap: 1.2rem; }
+      .section-apropos h1 { font-size: 1.8rem; }
     }
-
-    footer { background: var(--nav-bg); text-align: center; padding: 1.3rem; color: #888aab; font-size: 0.83rem; }
   </style>
 </head>
 <body>
-
   <nav>
-    <div class="nav-logo">2SI‑CIT <span>2025–2026</span></div>
+    <div class="nav-logo">2SI&#8209;CIT <span>2025&ndash;2026</span></div>
     <ul class="nav-links">
       <li><a href="#apropos">À propos</a></li>
       <li><a href="#projets">Projets</a></li>
@@ -145,171 +369,156 @@
   </nav>
 
   <section class="section-apropos" id="apropos">
-    <h1>À propos</h1>
+    <div class="badge">Classe 2SI-CIT · 2025–2026</div>
+    <h1>Nos <em>projets</em><br>d'innovation</h1>
+    <div class="divider"></div>
     <p>Ce site présente les différents projets réalisés par les élèves de la classe. Chaque projet reflète notre travail, notre créativité et les compétences acquises.</p>
   </section>
 
   <section class="section-projets" id="projets">
-    <h2>Nos projets</h2>
+    <div class="section-header">
+      <h2>Nos projets</h2>
+      <span class="count">09 réalisations</span>
+    </div>
     <div class="grid">
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🎮</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Typical_Tetris_Game.svg/400px-Typical_Tetris_Game.svg.png" alt="Tetris">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzBkMGQxYScvPjxyZWN0IHg9JzEyMCcgeT0nNScgd2lkdGg9JzE2MCcgaGVpZ2h0PScxNDUnIGZpbGw9JyMxMTExMzMnIHJ4PSc0Jy8+PHJlY3QgeD0nMTI4JyB5PScxMTUnIHdpZHRoPScxOCcgaGVpZ2h0PScxOCcgZmlsbD0nIzAwY2ZmZicgcng9JzInLz48cmVjdCB4PScxNDgnIHk9JzExNScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjMDBjZmZmJyByeD0nMicvPjxyZWN0IHg9JzE2OCcgeT0nMTE1JyB3aWR0aD0nMTgnIGhlaWdodD0nMTgnIGZpbGw9JyMwMGNmZmYnIHJ4PScyJy8+PHJlY3QgeD0nMTg4JyB5PScxMTUnIHdpZHRoPScxOCcgaGVpZ2h0PScxOCcgZmlsbD0nIzAwY2ZmZicgcng9JzInLz48cmVjdCB4PScxMjgnIHk9Jzk1JyB3aWR0aD0nMTgnIGhlaWdodD0nMTgnIGZpbGw9JyNmZjRlOTEnIHJ4PScyJy8+PHJlY3QgeD0nMTQ4JyB5PSc5NScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjZmY0ZTkxJyByeD0nMicvPjxyZWN0IHg9JzE0OCcgeT0nNzUnIHdpZHRoPScxOCcgaGVpZ2h0PScxOCcgZmlsbD0nI2ZmNGU5MScgcng9JzInLz48cmVjdCB4PScxNjgnIHk9Jzc1JyB3aWR0aD0nMTgnIGhlaWdodD0nMTgnIGZpbGw9JyNmZjRlOTEnIHJ4PScyJy8+PHJlY3QgeD0nMTg4JyB5PSc5NScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjZmZlNjAwJyByeD0nMicvPjxyZWN0IHg9JzIwOCcgeT0nOTUnIHdpZHRoPScxOCcgaGVpZ2h0PScxOCcgZmlsbD0nI2ZmZTYwMCcgcng9JzInLz48cmVjdCB4PScxODgnIHk9JzExNScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjZmZlNjAwJyByeD0nMicvPjxyZWN0IHg9JzIwOCcgeT0nMTE1JyB3aWR0aD0nMTgnIGhlaWdodD0nMTgnIGZpbGw9JyNmZmU2MDAnIHJ4PScyJy8+PHJlY3QgeD0nMjI4JyB5PSc3NScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjN2MzYWVkJyByeD0nMicvPjxyZWN0IHg9JzIyOCcgeT0nOTUnIHdpZHRoPScxOCcgaGVpZ2h0PScxOCcgZmlsbD0nIzdjM2FlZCcgcng9JzInLz48cmVjdCB4PScyMjgnIHk9JzExNScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjN2MzYWVkJyByeD0nMicvPjxyZWN0IHg9JzI0OCcgeT0nMTE1JyB3aWR0aD0nMTgnIGhlaWdodD0nMTgnIGZpbGw9JyM3YzNhZWQnIHJ4PScyJy8+PHJlY3QgeD0nMTY4JyB5PSczNScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjMDBmZjk5JyByeD0nMicgb3BhY2l0eT0nMC43Jy8+PHJlY3QgeD0nMTY4JyB5PSc1NScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjMDBmZjk5JyByeD0nMicgb3BhY2l0eT0nMC43Jy8+PHJlY3QgeD0nMTg4JyB5PSc1NScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjMDBmZjk5JyByeD0nMicgb3BhY2l0eT0nMC43Jy8+PHJlY3QgeD0nMjA4JyB5PSc1NScgd2lkdGg9JzE4JyBoZWlnaHQ9JzE4JyBmaWxsPScjMDBmZjk5JyByeD0nMicgb3BhY2l0eT0nMC43Jy8+PHRleHQgeD0nMjAwJyB5PScyMCcgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPScxMScgZmlsbD0nIzAwY2ZmZicgdGV4dC1hbmNob3I9J21pZGRsZSc+VEVUUklTIG1pY3JvOmJpdDwvdGV4dD48L3N2Zz4=" alt="Projet 1 – Tetris">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 1 – Tetris</div>
+          <div class="card-num">PROJET 01</div>
+          <div class="card-title">Tetris</div>
           <p class="card-desc">Un jeu de tetris réalisé en Python sur une carte micro:bit</p>
           <p class="card-author"><strong>Auteur :</strong> Teva, gougoul</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🧭</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Compass_rose_simple_plain.svg/400px-Compass_rose_simple_plain.svg.png" alt="Boussole">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzBhMWEyZScvPjxjaXJjbGUgY3g9JzIwMCcgY3k9Jzc1JyByPSc2NScgZmlsbD0nbm9uZScgc3Ryb2tlPScjYzBhMDYwJyBzdHJva2Utd2lkdGg9JzMnLz48Y2lyY2xlIGN4PScyMDAnIGN5PSc3NScgcj0nNTgnIGZpbGw9JyMwZDIzNDAnIHN0cm9rZT0nIzhhNzA0MCcgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzIwMCcgeTE9JzE3JyB4Mj0nMjAwJyB5Mj0nMzAnIHN0cm9rZT0nI2MwYTA2MCcgc3Ryb2tlLXdpZHRoPScyJy8+PGxpbmUgeDE9JzIwMCcgeTE9JzEyMCcgeDI9JzIwMCcgeTI9JzEzMycgc3Ryb2tlPScjYzBhMDYwJyBzdHJva2Utd2lkdGg9JzInLz48bGluZSB4MT0nMTMyJyB5MT0nNzUnIHgyPScxNDUnIHkyPSc3NScgc3Ryb2tlPScjYzBhMDYwJyBzdHJva2Utd2lkdGg9JzInLz48bGluZSB4MT0nMjU1JyB5MT0nNzUnIHgyPScyNjgnIHkyPSc3NScgc3Ryb2tlPScjYzBhMDYwJyBzdHJva2Utd2lkdGg9JzInLz48dGV4dCB4PScyMDAnIHk9JzQyJyBmb250LWZhbWlseT0nc2VyaWYnIGZvbnQtc2l6ZT0nMTMnIGZpbGw9JyNmZjQ0NDQnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtd2VpZ2h0PSdib2xkJz5OPC90ZXh0Pjx0ZXh0IHg9JzIwMCcgeT0nMTIwJyBmb250LWZhbWlseT0nc2VyaWYnIGZvbnQtc2l6ZT0nMTMnIGZpbGw9JyNjMGEwNjAnIHRleHQtYW5jaG9yPSdtaWRkbGUnPlM8L3RleHQ+PHRleHQgeD0nMTU1JyB5PSc4MCcgZm9udC1mYW1pbHk9J3NlcmlmJyBmb250LXNpemU9JzEzJyBmaWxsPScjYzBhMDYwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5XPC90ZXh0Pjx0ZXh0IHg9JzI0NScgeT0nODAnIGZvbnQtZmFtaWx5PSdzZXJpZicgZm9udC1zaXplPScxMycgZmlsbD0nI2MwYTA2MCcgdGV4dC1hbmNob3I9J21pZGRsZSc+RTwvdGV4dD48cG9seWdvbiBwb2ludHM9JzIwMCwzMCAxOTYsNzUgMjAwLDgxIDIwNCw3NScgZmlsbD0nI2ZmNDQ0NCcvPjxwb2x5Z29uIHBvaW50cz0nMjAwLDEyMCAxOTYsNzUgMjAwLDY5IDIwNCw3NScgZmlsbD0nI2U4ZThlOCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9Jzc1JyByPSc1JyBmaWxsPScjYzBhMDYwJy8+PHRleHQgeD0nMjAwJyB5PScxNTAnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nIzg4OTlhYScgdGV4dC1hbmNob3I9J21pZGRsZSc+QkJDIG1pY3JvOmJpdCAtIEJvdXNzb2xlPC90ZXh0Pjwvc3ZnPg==" alt="Projet 2 – Boussole">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 2 – Boussole</div>
+          <div class="card-num">PROJET 02</div>
+          <div class="card-title">Boussole</div>
           <p class="card-desc">Un projet de boussole électronique sur une carte micro bit bbc</p>
           <p class="card-author"><strong>Auteur :</strong> Iain, hugo</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🚗</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/BBC_Micro_Bit_gaming.jpg/400px-BBC_Micro_Bit_gaming.jpg" alt="Voiture téléguidée">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzBhMGMxMCcvPjxyZWN0IHg9JzEwMCcgeT0nNTUnIHdpZHRoPScyMDAnIGhlaWdodD0nNjAnIGZpbGw9JyMxZTIyMzgnIHJ4PSc4Jy8+PHJlY3QgeD0nMTMwJyB5PSczNScgd2lkdGg9JzE0MCcgaGVpZ2h0PSc1MCcgZmlsbD0nIzI0MjgzYicgcng9JzYnLz48Y2lyY2xlIGN4PScxMzUnIGN5PScxMjAnIHI9JzE4JyBmaWxsPScjMjIyJyBzdHJva2U9JyM0NDQnIHN0cm9rZS13aWR0aD0nMycvPjxjaXJjbGUgY3g9JzEzNScgY3k9JzEyMCcgcj0nOCcgZmlsbD0nIzU1NScvPjxjaXJjbGUgY3g9JzI2NScgY3k9JzEyMCcgcj0nMTgnIGZpbGw9JyMyMjInIHN0cm9rZT0nIzQ0NCcgc3Ryb2tlLXdpZHRoPSczJy8+PGNpcmNsZSBjeD0nMjY1JyBjeT0nMTIwJyByPSc4JyBmaWxsPScjNTU1Jy8+PHJlY3QgeD0nODUnIHk9JzY1JyB3aWR0aD0nMjAnIGhlaWdodD0nMTInIGZpbGw9JyNmZmVlMDAnIG9wYWNpdHk9JzAuOCcgcng9JzInLz48cmVjdCB4PScyOTUnIHk9JzY1JyB3aWR0aD0nMjAnIGhlaWdodD0nMTInIGZpbGw9JyNmZjQ0MDAnIG9wYWNpdHk9JzAuOCcgcng9JzInLz48dGV4dCB4PScyMDAnIHk9JzE1MCcgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjNjY2JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5Wb2l0dXJlIHTDqWzDqWd1aWTDqWU8L3RleHQ+PC9zdmc+" alt="Projet 3 – Piloter un moteur">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 3 – Piloter un moteur</div>
+          <div class="card-num">PROJET 03</div>
+          <div class="card-title">Piloter un moteur</div>
           <p class="card-desc">Piloter un moteur avec une carte bbc dans l'optique de piloter une voiture téléguidée</p>
           <p class="card-author"><strong>Auteur :</strong> timeo, samuel</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🔊</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Sylvania_Speaker.jpg/400px-Sylvania_Speaker.jpg" alt="Amplificateur">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzExMScvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzcyJyByPSc2MicgZmlsbD0nIzIyMicgc3Ryb2tlPScjNDQ0JyBzdHJva2Utd2lkdGg9JzMnLz48Y2lyY2xlIGN4PScyMDAnIGN5PSc3Micgcj0nNTInIGZpbGw9J25vbmUnIHN0cm9rZT0nIzU1NScgc3Ryb2tlLXdpZHRoPScyJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nNzInIHI9JzQwJyBmaWxsPScjMWExYTFhJyBzdHJva2U9JyM2NjYnIHN0cm9rZS13aWR0aD0nMicvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzcyJyByPScyOCcgZmlsbD0nIzIyMicgc3Ryb2tlPScjNzc3JyBzdHJva2Utd2lkdGg9JzInLz48Y2lyY2xlIGN4PScyMDAnIGN5PSc3Micgcj0nMTUnIGZpbGw9JyMzMzMnIHN0cm9rZT0nIzg4OCcgc3Ryb2tlLXdpZHRoPScyJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nNzInIHI9JzYnIGZpbGw9JyM5OTknLz48cGF0aCBkPSdNMjg1IDQwIFEzMTAgNzIgMjg1IDEwNCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjM2U4ZThlJyBzdHJva2Utd2lkdGg9JzIuNScgb3BhY2l0eT0nMC44Jy8+PHBhdGggZD0nTTMwMCAyOCBRMzM1IDcyIDMwMCAxMTYnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzNlOGU4ZScgc3Ryb2tlLXdpZHRoPScyJyBvcGFjaXR5PScwLjUnLz48cGF0aCBkPSdNMzE1IDE2IFEzNjAgNzIgMzE1IDEyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjM2U4ZThlJyBzdHJva2Utd2lkdGg9JzEuNScgb3BhY2l0eT0nMC4zJy8+PHJlY3QgeD0nMzAnIHk9Jzk1JyB3aWR0aD0nMTInIGhlaWdodD0nMzAnIGZpbGw9JyMzZThlOGUnIHJ4PScyJy8+PHJlY3QgeD0nNDgnIHk9JzgwJyB3aWR0aD0nMTInIGhlaWdodD0nNDUnIGZpbGw9JyMzZThlOGUnIHJ4PScyJy8+PHJlY3QgeD0nNjYnIHk9JzYwJyB3aWR0aD0nMTInIGhlaWdodD0nNjUnIGZpbGw9JyMzZThlOGUnIHJ4PScyJy8+PHJlY3QgeD0nODQnIHk9JzcwJyB3aWR0aD0nMTInIGhlaWdodD0nNTUnIGZpbGw9JyMzZThlOGUnIHJ4PScyJy8+PHJlY3QgeD0nMTAyJyB5PSc1MCcgd2lkdGg9JzEyJyBoZWlnaHQ9Jzc1JyBmaWxsPScjM2U4ZThlJyByeD0nMicvPjx0ZXh0IHg9JzIwMCcgeT0nMTQ4JyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyM2NjYnIHRleHQtYW5jaG9yPSdtaWRkbGUnPkFtcGxpZmljYXRldXIgc29ub3JlPC90ZXh0Pjwvc3ZnPg==" alt="Projet 4 – Amplificateur de son">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 4 – Amplificateur de son</div>
+          <div class="card-num">PROJET 04</div>
+          <div class="card-title">Amplificateur de son</div>
           <p class="card-desc">Amplificateur sonore</p>
           <p class="card-author"><strong>Auteur :</strong> tino, lancelot</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🤖</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Lego_Color_Bricks.jpg/400px-Lego_Color_Bricks.jpg" alt="Voiture infrarouge Lego">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nI2Y1ZjBlOCcvPjxyZWN0IHg9JzYwJyB5PSc4MCcgd2lkdGg9JzI4MCcgaGVpZ2h0PSc1NScgZmlsbD0nI2U4YjQwMCcgcng9JzQnLz48Y2lyY2xlIGN4PSc5MCcgY3k9Jzc1JyByPSc4JyBmaWxsPScjZjBjMDAwJy8+PGNpcmNsZSBjeD0nMTIwJyBjeT0nNzUnIHI9JzgnIGZpbGw9JyNmMGMwMDAnLz48Y2lyY2xlIGN4PScxNTAnIGN5PSc3NScgcj0nOCcgZmlsbD0nI2YwYzAwMCcvPjxjaXJjbGUgY3g9JzE4MCcgY3k9Jzc1JyByPSc4JyBmaWxsPScjZjBjMDAwJy8+PGNpcmNsZSBjeD0nMjEwJyBjeT0nNzUnIHI9JzgnIGZpbGw9JyNmMGMwMDAnLz48Y2lyY2xlIGN4PScyNDAnIGN5PSc3NScgcj0nOCcgZmlsbD0nI2YwYzAwMCcvPjxjaXJjbGUgY3g9JzI3MCcgY3k9Jzc1JyByPSc4JyBmaWxsPScjZjBjMDAwJy8+PGNpcmNsZSBjeD0nMzAwJyBjeT0nNzUnIHI9JzgnIGZpbGw9JyNmMGMwMDAnLz48cmVjdCB4PScxMTAnIHk9JzQ1JyB3aWR0aD0nMTgwJyBoZWlnaHQ9JzQwJyBmaWxsPScjY2MwMDAwJyByeD0nNicvPjxyZWN0IHg9JzEzMCcgeT0nMzAnIHdpZHRoPScxMzAnIGhlaWdodD0nMjUnIGZpbGw9JyNkZDExMTEnIHJ4PSc1Jy8+PGNpcmNsZSBjeD0nMTQ1JyBjeT0nMTMwJyByPScxOCcgZmlsbD0nIzMzMycvPjxjaXJjbGUgY3g9JzE0NScgY3k9JzEzMCcgcj0nOScgZmlsbD0nIzY2NicvPjxjaXJjbGUgY3g9JzI1NScgY3k9JzEzMCcgcj0nMTgnIGZpbGw9JyMzMzMnLz48Y2lyY2xlIGN4PScyNTUnIGN5PScxMzAnIHI9JzknIGZpbGw9JyM2NjYnLz48bGluZSB4MT0nMjkwJyB5MT0nNTUnIHgyPSczNzUnIHkyPSc1NScgc3Ryb2tlPScjZmY0NDAwJyBzdHJva2Utd2lkdGg9JzInIHN0cm9rZS1kYXNoYXJyYXk9JzYgMycvPjxjaXJjbGUgY3g9JzM3NScgY3k9JzU1JyByPSc2JyBmaWxsPScjZmY0NDAwJyBvcGFjaXR5PScwLjcnLz48dGV4dCB4PSczNDAnIHk9JzQ4JyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzgnIGZpbGw9JyNmZjQ0MDAnPklSPC90ZXh0Pjx0ZXh0IHg9JzIwMCcgeT0nMTUyJyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyM4ODgnIHRleHQtYW5jaG9yPSdtaWRkbGUnPlZvaXR1cmUgaW5mcmFyb3VnZSBMZWdvPC90ZXh0Pjwvc3ZnPg==" alt="Projet 5 – Voiture à infrarouge">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 5 – Voiture à infrarouge</div>
+          <div class="card-num">PROJET 05</div>
+          <div class="card-title">Voiture à infrarouge</div>
           <p class="card-desc">Voiture pilotée grâce à un laser infrarouge en Lego</p>
           <p class="card-author"><strong>Auteur :</strong> alex, yanis</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🎵</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Musical_notes.svg/400px-Musical_notes.svg.png" alt="Blind test">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzFhMGEyZScvPjx0ZXh0IHg9JzU1JyB5PSc3MCcgZm9udC1zaXplPSczNicgZmlsbD0nI2ZmNGU5MScgb3BhY2l0eT0nMC45JyBmb250LWZhbWlseT0nc2VyaWYnPiYjOTgzNDs8L3RleHQ+PHRleHQgeD0nOTUnIHk9JzUwJyBmb250LXNpemU9JzI0JyBmaWxsPScjMDBjZmZmJyBvcGFjaXR5PScwLjcnIGZvbnQtZmFtaWx5PSdzZXJpZic+JiM5ODM1OzwvdGV4dD48dGV4dCB4PScyODUnIHk9JzgwJyBmb250LXNpemU9JzQwJyBmaWxsPScjZmZlNjAwJyBvcGFjaXR5PScwLjgnIGZvbnQtZmFtaWx5PSdzZXJpZic+JiM5ODMzOzwvdGV4dD48dGV4dCB4PSczMjgnIHk9JzUwJyBmb250LXNpemU9JzIyJyBmaWxsPScjMDBmZjk5JyBvcGFjaXR5PScwLjYnIGZvbnQtZmFtaWx5PSdzZXJpZic+JiM5ODM2OzwvdGV4dD48cmVjdCB4PScxMzAnIHk9JzE4JyB3aWR0aD0nMTUwJyBoZWlnaHQ9JzExMicgZmlsbD0nIzJhMWE0ZScgcng9JzEwJyBzdHJva2U9JyM3YzNhZWQnIHN0cm9rZS13aWR0aD0nMicvPjx0ZXh0IHg9JzIwNScgeT0nNDAnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTAnIGZpbGw9JyNmZmU2MDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnPkJMSU5EIFRFU1Q8L3RleHQ+PGxpbmUgeDE9JzE0NScgeTE9JzQ2JyB4Mj0nMjY1JyB5Mj0nNDYnIHN0cm9rZT0nIzdjM2FlZCcgc3Ryb2tlLXdpZHRoPScxJy8+PHJlY3QgeD0nMTQzJyB5PSc1Mycgd2lkdGg9JzExNCcgaGVpZ2h0PScxNCcgZmlsbD0nIzNkMjA2MCcgcng9JzMnLz48dGV4dCB4PScxNTAnIHk9JzYzJyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyNjY2MnPkEpIERhZnQgUHVuazwvdGV4dD48cmVjdCB4PScxNDMnIHk9JzcxJyB3aWR0aD0nMTE0JyBoZWlnaHQ9JzE0JyBmaWxsPScjMDBhYTQ0JyByeD0nMycvPjx0ZXh0IHg9JzE1MCcgeT0nODEnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nI2ZmZic+QikgSnVzdGljZSBPSzwvdGV4dD48cmVjdCB4PScxNDMnIHk9Jzg5JyB3aWR0aD0nMTE0JyBoZWlnaHQ9JzE0JyBmaWxsPScjM2QyMDYwJyByeD0nMycvPjx0ZXh0IHg9JzE1MCcgeT0nOTknIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nI2NjYyc+QykgS2F2aW5za3k8L3RleHQ+PHJlY3QgeD0nMTQzJyB5PScxMDcnIHdpZHRoPScxMTQnIGhlaWdodD0nMTQnIGZpbGw9JyMzZDIwNjAnIHJ4PSczJy8+PHRleHQgeD0nMTUwJyB5PScxMTcnIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOScgZmlsbD0nI2NjYyc+RCkgTTgzPC90ZXh0Pjx0ZXh0IHg9JzIwMCcgeT0nMTQ4JyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzknIGZpbGw9JyM2NjYnIHRleHQtYW5jaG9yPSdtaWRkbGUnPkJsaW5kIFRlc3QgUUNNIC0gQkJDIG1pY3JvOmJpdDwvdGV4dD48L3N2Zz4=" alt="Projet 6 – Blind test (QCM)">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 6 – Blind test (QCM)</div>
+          <div class="card-num">PROJET 06</div>
+          <div class="card-title">Blind test (QCM)</div>
           <p class="card-desc">Petit jeux amusant et stimulant sur carte BBC</p>
           <p class="card-author"><strong>Auteur :</strong> BEKÔ 2.0</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">💡</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Microbit_v2.jpg/400px-Microbit_v2.jpg" alt="Projet 7">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzFlMmEzYScvPjxyZWN0IHg9JzEyMCcgeT0nMTgnIHdpZHRoPScxNjAnIGhlaWdodD0nMTEyJyBmaWxsPScjMjIyJyByeD0nMTInIHN0cm9rZT0nIzQ0NCcgc3Ryb2tlLXdpZHRoPScyJy8+PGNpcmNsZSBjeD0nMTUyJyBjeT0nNTAnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxNjgnIGN5PSc1MCcgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE4NCcgY3k9JzUwJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nNTAnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScyMTYnIGN5PSc1MCcgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzY2JyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTY4JyBjeT0nNjYnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxODQnIGN5PSc2Nicgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzY2JyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMjE2JyBjeT0nNjYnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxNTInIGN5PSc4Micgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE2OCcgY3k9JzgyJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTg0JyBjeT0nODInIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScyMDAnIGN5PSc4Micgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzIxNicgY3k9JzgyJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTUyJyBjeT0nOTgnIHI9JzUnIGZpbGw9JyMzMzAwMDAnLz48Y2lyY2xlIGN4PScxNjgnIGN5PSc5OCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE4NCcgY3k9Jzk4JyByPSc1JyBmaWxsPScjMzMwMDAwJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nOTgnIHI9JzUnIGZpbGw9JyMzMzAwMDAnLz48Y2lyY2xlIGN4PScyMTYnIGN5PSc5OCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE2OCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE4NCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIxNicgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxyZWN0IHg9JzEyNicgeT0nNzgnIHdpZHRoPScxNicgaGVpZ2h0PScxNCcgZmlsbD0nIzNhM2EzYScgcng9JzMnIHN0cm9rZT0nIzU1NScvPjx0ZXh0IHg9JzEzNCcgeT0nODknIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOCcgZmlsbD0nI2FhYScgdGV4dC1hbmNob3I9J21pZGRsZSc+QTwvdGV4dD48cmVjdCB4PScyNTgnIHk9Jzc4JyB3aWR0aD0nMTYnIGhlaWdodD0nMTQnIGZpbGw9JyMzYTNhM2EnIHJ4PSczJyBzdHJva2U9JyM1NTUnLz48dGV4dCB4PScyNjYnIHk9Jzg5JyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzgnIGZpbGw9JyNhYWEnIHRleHQtYW5jaG9yPSdtaWRkbGUnPkI8L3RleHQ+PHJlY3QgeD0nMTcyJyB5PScxMjAnIHdpZHRoPSc1NicgaGVpZ2h0PScxMCcgZmlsbD0nIzg4OCcgcng9JzInLz48dGV4dCB4PScyMDAnIHk9JzE1MCcgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjNjY2JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5CQkMgbWljcm86Yml0PC90ZXh0Pjwvc3ZnPg==" alt="Projet 7">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 7 – Titre du projet</div>
+          <div class="card-num">PROJET 07</div>
+          <div class="card-title">Titre du projet</div>
           <p class="card-desc">Description courte du projet.</p>
           <p class="card-author"><strong>Élèves :</strong> Prénom 5</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">⚙️</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Microbit_v2.jpg/400px-Microbit_v2.jpg" alt="Projet 8">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzFlMmEzYScvPjxyZWN0IHg9JzEyMCcgeT0nMTgnIHdpZHRoPScxNjAnIGhlaWdodD0nMTEyJyBmaWxsPScjMjIyJyByeD0nMTInIHN0cm9rZT0nIzQ0NCcgc3Ryb2tlLXdpZHRoPScyJy8+PGNpcmNsZSBjeD0nMTUyJyBjeT0nNTAnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxNjgnIGN5PSc1MCcgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE4NCcgY3k9JzUwJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nNTAnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScyMTYnIGN5PSc1MCcgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzY2JyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTY4JyBjeT0nNjYnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxODQnIGN5PSc2Nicgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzY2JyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMjE2JyBjeT0nNjYnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxNTInIGN5PSc4Micgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE2OCcgY3k9JzgyJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTg0JyBjeT0nODInIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScyMDAnIGN5PSc4Micgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzIxNicgY3k9JzgyJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTUyJyBjeT0nOTgnIHI9JzUnIGZpbGw9JyMzMzAwMDAnLz48Y2lyY2xlIGN4PScxNjgnIGN5PSc5OCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE4NCcgY3k9Jzk4JyByPSc1JyBmaWxsPScjMzMwMDAwJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nOTgnIHI9JzUnIGZpbGw9JyMzMzAwMDAnLz48Y2lyY2xlIGN4PScyMTYnIGN5PSc5OCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE2OCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE4NCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIxNicgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxyZWN0IHg9JzEyNicgeT0nNzgnIHdpZHRoPScxNicgaGVpZ2h0PScxNCcgZmlsbD0nIzNhM2EzYScgcng9JzMnIHN0cm9rZT0nIzU1NScvPjx0ZXh0IHg9JzEzNCcgeT0nODknIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOCcgZmlsbD0nI2FhYScgdGV4dC1hbmNob3I9J21pZGRsZSc+QTwvdGV4dD48cmVjdCB4PScyNTgnIHk9Jzc4JyB3aWR0aD0nMTYnIGhlaWdodD0nMTQnIGZpbGw9JyMzYTNhM2EnIHJ4PSczJyBzdHJva2U9JyM1NTUnLz48dGV4dCB4PScyNjYnIHk9Jzg5JyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzgnIGZpbGw9JyNhYWEnIHRleHQtYW5jaG9yPSdtaWRkbGUnPkI8L3RleHQ+PHJlY3QgeD0nMTcyJyB5PScxMjAnIHdpZHRoPSc1NicgaGVpZ2h0PScxMCcgZmlsbD0nIzg4OCcgcng9JzInLz48dGV4dCB4PScyMDAnIHk9JzE1MCcgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjNjY2JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5CQkMgbWljcm86Yml0PC90ZXh0Pjwvc3ZnPg==" alt="Projet 8">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 8 – Titre du projet</div>
+          <div class="card-num">PROJET 08</div>
+          <div class="card-title">Titre du projet</div>
           <p class="card-desc">Description courte du projet.</p>
           <p class="card-author"><strong>Élèves :</strong> Prénom 5</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
       <article class="card">
         <div class="card-media">
           <div class="card-img-placeholder">🔬</div>
-          <img class="card-img-reveal" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Microbit_v2.jpg/400px-Microbit_v2.jpg" alt="Projet 9">
+          <img class="card-img-reveal" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA0MDAgMTU1Jz48cmVjdCB3aWR0aD0nNDAwJyBoZWlnaHQ9JzE1NScgZmlsbD0nIzFlMmEzYScvPjxyZWN0IHg9JzEyMCcgeT0nMTgnIHdpZHRoPScxNjAnIGhlaWdodD0nMTEyJyBmaWxsPScjMjIyJyByeD0nMTInIHN0cm9rZT0nIzQ0NCcgc3Ryb2tlLXdpZHRoPScyJy8+PGNpcmNsZSBjeD0nMTUyJyBjeT0nNTAnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxNjgnIGN5PSc1MCcgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE4NCcgY3k9JzUwJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nNTAnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScyMTYnIGN5PSc1MCcgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzY2JyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTY4JyBjeT0nNjYnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxODQnIGN5PSc2Nicgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzY2JyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMjE2JyBjeT0nNjYnIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScxNTInIGN5PSc4Micgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzE2OCcgY3k9JzgyJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTg0JyBjeT0nODInIHI9JzUnIGZpbGw9JyNmZjMzMzMnLz48Y2lyY2xlIGN4PScyMDAnIGN5PSc4Micgcj0nNScgZmlsbD0nI2ZmMzMzMycvPjxjaXJjbGUgY3g9JzIxNicgY3k9JzgyJyByPSc1JyBmaWxsPScjZmYzMzMzJy8+PGNpcmNsZSBjeD0nMTUyJyBjeT0nOTgnIHI9JzUnIGZpbGw9JyMzMzAwMDAnLz48Y2lyY2xlIGN4PScxNjgnIGN5PSc5OCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE4NCcgY3k9Jzk4JyByPSc1JyBmaWxsPScjMzMwMDAwJy8+PGNpcmNsZSBjeD0nMjAwJyBjeT0nOTgnIHI9JzUnIGZpbGw9JyMzMzAwMDAnLz48Y2lyY2xlIGN4PScyMTYnIGN5PSc5OCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE2OCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzE4NCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxjaXJjbGUgY3g9JzIxNicgY3k9JzExNCcgcj0nNScgZmlsbD0nIzMzMDAwMCcvPjxyZWN0IHg9JzEyNicgeT0nNzgnIHdpZHRoPScxNicgaGVpZ2h0PScxNCcgZmlsbD0nIzNhM2EzYScgcng9JzMnIHN0cm9rZT0nIzU1NScvPjx0ZXh0IHg9JzEzNCcgeT0nODknIGZvbnQtZmFtaWx5PSdtb25vc3BhY2UnIGZvbnQtc2l6ZT0nOCcgZmlsbD0nI2FhYScgdGV4dC1hbmNob3I9J21pZGRsZSc+QTwvdGV4dD48cmVjdCB4PScyNTgnIHk9Jzc4JyB3aWR0aD0nMTYnIGhlaWdodD0nMTQnIGZpbGw9JyMzYTNhM2EnIHJ4PSczJyBzdHJva2U9JyM1NTUnLz48dGV4dCB4PScyNjYnIHk9Jzg5JyBmb250LWZhbWlseT0nbW9ub3NwYWNlJyBmb250LXNpemU9JzgnIGZpbGw9JyNhYWEnIHRleHQtYW5jaG9yPSdtaWRkbGUnPkI8L3RleHQ+PHJlY3QgeD0nMTcyJyB5PScxMjAnIHdpZHRoPSc1NicgaGVpZ2h0PScxMCcgZmlsbD0nIzg4OCcgcng9JzInLz48dGV4dCB4PScyMDAnIHk9JzE1MCcgZm9udC1mYW1pbHk9J21vbm9zcGFjZScgZm9udC1zaXplPSc5JyBmaWxsPScjNjY2JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5CQkMgbWljcm86Yml0PC90ZXh0Pjwvc3ZnPg==" alt="Projet 9">
         </div>
         <div class="card-body">
-          <div class="card-title">Projet 9 – Titre du projet</div>
+          <div class="card-num">PROJET 09</div>
+          <div class="card-title">Titre du projet</div>
           <p class="card-desc">Description courte du projet.</p>
           <p class="card-author"><strong>Élèves :</strong> Prénom 5</p>
-          <button class="btn-projet" onclick="toggleCard(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            Voir le projet
-          </button>
+          <button class="btn-projet" onclick="toggleCard(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> Voir le projet</button>
         </div>
       </article>
 
     </div>
   </section>
 
-  <footer>© 2025–2026 · Classe 2SI-CIT · Tous droits réservés</footer>
+  <footer>© 2025–2026 · <span>Classe 2SI-CIT</span> · Tous droits réservés</footer>
 
   <script>
     function toggleCard(btn) {
       const card = btn.closest('.card');
       const revealed = card.classList.toggle('revealed');
-      const icon = btn.querySelector('svg');
-      btn.childNodes[btn.childNodes.length - 1].textContent = revealed ? ' Masquer' : ' Voir le projet';
+      btn.lastChild.textContent = revealed ? ' Masquer' : ' Voir le projet';
     }
   </script>
-
 </body>
 </html>
